@@ -27,7 +27,8 @@ parser.add_argument("--pinecone-namespace", type=str, help="The namespace to sto
 
 # ChromaDB specific arguments
 parser.add_argument("--chroma-api-key", type=str, help="The API key of the ChromaDB database.", default="")
-parser.add_argument("--chroma-collection-name", type=str, help="The name of the collection to store the vectors in.", default="")
+parser.add_argument("--chroma-tenant-id", type=str, help="The tenant ID of the ChromaDB database.", default="")
+parser.add_argument("--chroma-database-name", type=str, help="The name of the collection to store the vectors in.", default="")
 
 args = parser.parse_args()
 
@@ -38,7 +39,7 @@ pinecone_index = args.pinecone_index
 pinecone_namespace = args.pinecone_namespace
 
 chroma_api_key = args.chroma_api_key
-chroma_collection_name = args.chroma_collection_name
+chroma_database_name = args.chroma_database_name
 
 if database not in supported_databases:
   print(f"Database {database} not supported")
@@ -80,7 +81,7 @@ for file in files:
     elif database == "chromadb":
       upload_file_to_chromadb(file=f,
         api_key=chroma_api_key,
-        collection_name=chroma_collection_name
+        database_name=chroma_database_name
       )
     else:
       print(f"Database {database} not supported")

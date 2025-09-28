@@ -1,8 +1,8 @@
 from chromadb import CloudClient
 
-async def upload_file_to_chromadb(file=None, api_key=None, collection_name=None):
+async def upload_file_to_chromadb(file=None, api_key=None, database_name=None):
     client = CloudClient(api_key=api_key)
-    collection = await client.create_collection(collection_name)
+    collection = await client.create_collection(database_name)
 
     print(f"⏳ Starting: Uploading records to ChromaDB..")
 
