@@ -36,6 +36,7 @@ args = parser.parse_args()
 
 database = args.database
 url = args.url
+print(f"URL: {url}")
 
 pinecone_api_key = args.pinecone_api_key
 pinecone_index = args.pinecone_index
@@ -49,18 +50,18 @@ if database not in supported_databases:
   print(f"Database {database} not supported")
   exit(1)
 
-# prompt = """
-#   Find all the paragraphs of the documentation in {url}.
-
-#   Store each paragraph in a separate row in a CSV.
-# """
-
-# TEST PROMPT
-prompt = """
-  Find the first 2 paragraphs of the documentation in {url}.
+prompt = f"""
+  Find all the paragraphs of the documentation in {url}.
 
   Store each paragraph in a separate row in a CSV.
 """
+
+# TEST PROMPT
+# prompt = f"""
+#   Find the first 2 paragraphs of the documentation in {url}.
+
+#   Store each paragraph in a separate row in a CSV.
+# """
 
 agent = Agent(
     task=prompt,
