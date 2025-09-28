@@ -33,7 +33,7 @@ if database not in supported_databases:
   exit(1)
 
 prompt = """
-  Find the first 2 paragraphs of the documentation in https://developer.fountain.com/reference/overview.
+  Find all the paragraphs of the documentation in https://developer.fountain.com/reference/overview.
 
   Store each paragraph in a separate row in a CSV.
 """
