@@ -1,30 +1,29 @@
 ## Description
 
-Convert your knowledge base into a large text file that you can store as a vector in any of the existing vector databases.
+Convert your knowledge base website into a text file that you can store as a vector in any of the existing vector databases.
 
 The databases supported are:
 
-* ChromaDB
-
 * Pinecone
+* ChromaDB (Coming soon)
 
 ## Example Usage
 
 **Pinecone**
 
-```
-python know2vec.py "https://yourknowledgebasesite.com" --database pinecone --key [MY KEY] --index [INDEX NAME]
+Update all values with the ones from your account, API key, index name and namespace.
 
-> Created file in `knowledgebase_1.csv"
+```
+python know2vec.py \
+  --database pinecone \
+  --pinecone-api-key "[YOUR API KEY]"  \
+  --pinecone-index "know2vec-testing" \
+  --pinecone-namespace "know2vec-default"
 ```
 
 **ChromaDB**
 
-```
-python know2vec.py "https://yourknowledgebase.com" --database chromadb --key [MY KEY] --index [INDEX NAME]
-
-> Created file in `knowledgebase_1.csv"
-```
+Coming soon!
 
 
 ## Dependencies
@@ -32,11 +31,9 @@ python know2vec.py "https://yourknowledgebase.com" --database chromadb --key [MY
 This project uses browser-use
 
 
-
 # Notes:
 
 These databases will be supported in the future (or upon request):
 
 * PostgreSQL
-
 * Elasticsearch
