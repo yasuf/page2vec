@@ -36,7 +36,6 @@ args = parser.parse_args()
 
 database = args.database
 url = args.url
-print(f"URL: {url}")
 
 pinecone_api_key = args.pinecone_api_key
 pinecone_index = args.pinecone_index
