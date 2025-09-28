@@ -1,6 +1,7 @@
 ## TODO:
 # 2. Let the user enter more than 1 URL, they can enter a list of URLS and the agent or agents should go through them all
 #   so we create a full knowledge base.
+
 from browser_use import Agent, ChatOpenAI, Browser
 from dotenv import load_dotenv
 import argparse
@@ -55,6 +56,10 @@ for result in action_results:
 for file in files:
   with open(file, "r") as f:
     if database == "pinecone":
-      upload_file_to_pinecone(f)
+      upload_file_to_pinecone(file=f,
+        pinecone_api_key=pinecone_api_key,
+        pinecone_index=pinecone_index,
+        pinecone_namespace=pinecone_namespace
+      )
     else:
       print(f"Database {database} not supported")

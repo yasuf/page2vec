@@ -1,20 +1,9 @@
-import argparse
 from pinecone import Pinecone
 
-parser = argparse.ArgumentParser(description="A script to convert a knowledge base into vectors and store them in a database.")
-parser.add_argument("--database", type=str, help="The database to store the vectors in.", default="pinecone")
-parser.add_argument("--pinecone-api-key", type=str, help="The API key of the Pinecone database.", default="")
-parser.add_argument("--pinecone-index", type=str, help="The index to store the vectors in.", default="")
-parser.add_argument("--pinecone-namespace", type=str, help="The namespace to store the vectors in.", default="")
-args = parser.parse_args()
 
-pinecone_api_key = args.pinecone_api_key
-pinecone_index = args.pinecone_index
-pinecone_namespace = args.pinecone_namespace
 
-pc = Pinecone(api_key=pinecone_api_key)
-
-def upload_file_to_pinecone(file):
+def upload_file_to_pinecone(file=None, pinecone_api_key=None, pinecone_index=None, pinecone_namespace=None):
+    pc = Pinecone(api_key=pinecone_api_key)
     dense_index = pc.Index(pinecone_index)
 
     records_batches = {}
