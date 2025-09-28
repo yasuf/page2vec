@@ -8,25 +8,37 @@
 from browser_use import Agent, ChatOpenAI, Browser
 from dotenv import load_dotenv
 import argparse
+from chromadb import CloudClient
 from pinecone_helper import upload_file_to_pinecone
+from chromadb_helper import upload_file_to_chromadb
 load_dotenv()
 
-supported_databases = ["pinecone"]
+supported_databases = ["pinecone", "chromadb"]
 
 browser = Browser(headless=True)
 
 parser = argparse.ArgumentParser(description="A script to convert a knowledge base into vectors and store them in a database.")
 parser.add_argument("--database", type=str, help="The database to store the vectors in.", default="pinecone")
+
+# Pinecone specific arguments
 parser.add_argument("--pinecone-api-key", type=str, help="The API key of the Pinecone database.", default="")
 parser.add_argument("--pinecone-index", type=str, help="The index to store the vectors in.", default="")
 parser.add_argument("--pinecone-namespace", type=str, help="The namespace to store the vectors in.", default="")
 
+# ChromaDB specific arguments
+parser.add_argument("--chroma-api-key", type=str, help="The API key of the ChromaDB database.", default="")
+parser.add_argument("--chroma-collection-name", type=str, help="The name of the collection to store the vectors in.", default="")
+
 args = parser.parse_args()
 
 database = args.database
+
 pinecone_api_key = args.pinecone_api_key
 pinecone_index = args.pinecone_index
 pinecone_namespace = args.pinecone_namespace
+
+chroma_api_key = args.chroma_api_key
+chroma_collection_name = args.chroma_collection_name
 
 if database not in supported_databases:
   print(f"Database {database} not supported")
@@ -64,6 +76,11 @@ for file in files:
         pinecone_api_key=pinecone_api_key,
         pinecone_index=pinecone_index,
         pinecone_namespace=pinecone_namespace
+      )
+    elif database == "chromadb":
+      upload_file_to_chromadb(file=f,
+        api_key=chroma_api_key,
+        collection_name=chroma_collection_name
       )
     else:
       print(f"Database {database} not supported")

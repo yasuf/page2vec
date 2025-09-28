@@ -21,9 +21,14 @@ python page2vec.py \
   --pinecone-namespace "page2vec-default"
 ```
 
-**ChromaDB**
+**ChromaDB** (Beta)
 
-Coming soon!
+```
+python page2vec.py \
+  --database chromadb \
+  --pinecone-api-key "[YOUR API KEY]"  \
+  --pinecone-collection "page2vec-testing"
+```
 
 
 ## Dependencies
