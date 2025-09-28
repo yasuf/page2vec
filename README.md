@@ -14,11 +14,11 @@ The databases supported are:
 Update all values with the ones from your account, API key, index name and namespace.
 
 ```
-python know2vec.py \
+python page2vec.py \
   --database pinecone \
   --pinecone-api-key "[YOUR API KEY]"  \
-  --pinecone-index "know2vec-testing" \
-  --pinecone-namespace "know2vec-default"
+  --pinecone-index "page2vec-testing" \
+  --pinecone-namespace "page2vec-default"
 ```
 
 **ChromaDB**
