@@ -14,8 +14,6 @@ prompt = """
   Find the full main text of the documentation of https://developer.fountain.com/reference/overview.
 
   Store each paragraph in a separate row in a CSV.
-
-  Store it in this repository as a file called `knowledgebase_1.csv` within the outputs directory.
 """
 
 agent = Agent(
@@ -23,6 +21,23 @@ agent = Agent(
     llm=ChatOpenAI(model="o4-mini"),
     browser=browser,  # Uses Browser-Use cloud for the browser
 )
-agent.run_sync()
+history = agent.run_sync()
+action_results = history.action_results()
 
+print("Done with the Agent, starting to upload data to vector storage")
 
+files = []
+
+for result in action_results:
+  if result.attachments is not None:
+    for attachment in result.attachments:
+      files.append(attachment)
+      print(f"Added file to array: {attachment}")
+
+# Upload files to vector storage
+for file in files:
+  with open(file, "r") as f:
+    for line in f.readlines():
+      # upload to vector storage
+      print("Uploading to vector storage: ", line)
+      pass
