@@ -16,6 +16,7 @@ Update all values with the ones from your account, API key, index name and names
 ```
 python page2vec.py \
   --database pinecone \
+  --url "[INSERT A URL]"  \
   --pinecone-api-key "[YOUR API KEY]"  \
   --pinecone-index "page2vec-testing" \
   --pinecone-namespace "page2vec-default"
@@ -23,13 +24,7 @@ python page2vec.py \
 
 **ChromaDB**
 
-```
-python page2vec.py \
-  --database chromadb \
-  --chromadb-api-key "[YOUR API KEY]"  \
-  --chromadb-collection "page2vec-testing"
-```
-
+COMING SOON
 
 ## Dependencies
 
