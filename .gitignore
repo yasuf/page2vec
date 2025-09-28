@@ -1,1 +1,4 @@
 .env
+test_command.txt
+
+__pycache__/*
