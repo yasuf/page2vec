@@ -1,4 +1,7 @@
 ## TODO:
+# 1. Add support for ChromaDB
+# 2. Add support for PostgreSQL
+# 3. Add support for Elasticsearch
 # 2. Let the user enter more than 1 URL, they can enter a list of URLS and the agent or agents should go through them all
 #   so we create a full knowledge base.
 
@@ -17,6 +20,7 @@ parser.add_argument("--database", type=str, help="The database to store the vect
 parser.add_argument("--pinecone-api-key", type=str, help="The API key of the Pinecone database.", default="")
 parser.add_argument("--pinecone-index", type=str, help="The index to store the vectors in.", default="")
 parser.add_argument("--pinecone-namespace", type=str, help="The namespace to store the vectors in.", default="")
+
 args = parser.parse_args()
 
 database = args.database
