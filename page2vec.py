@@ -32,6 +32,9 @@ parser.add_argument("--chromadb-api-key", type=str, help="The API key of the Chr
 parser.add_argument("--chromadb-tenant-id", type=str, help="The tenant ID of the ChromaDB database.", default="")
 parser.add_argument("--chromadb-database-name", type=str, help="The name of the collection to store the vectors in.", default="")
 
+# Test mode, shorter agent cycle
+parser.add_argument("--test-mode", type=bool, help="If true, the agent will only look for the first 2 paragraphs.", default=False)
+
 args = parser.parse_args()
 
 database = args.database
@@ -45,6 +48,8 @@ chroma_db_api_key = args.chromadb_api_key
 chroma_db_tenant_id = args.chromadb_tenant_id
 chroma_db_database_name = args.chromadb_database_name
 
+test_mode = args.test_mode
+
 if database not in supported_databases:
   print(f"Database {database} not supported")
   exit(1)
@@ -56,11 +61,12 @@ prompt = f"""
 """
 
 # TEST PROMPT
-# prompt = f"""
-#   Find the first 2 paragraphs of the documentation in {url}.
+if test_mode:
+  prompt = f"""
+    Find the first 2 paragraphs of the documentation in {url}.
 
-#   Store each paragraph in a separate row in a CSV.
-# """
+    Store each paragraph in a separate row in a CSV.
+  """
 
 agent = Agent(
     task=prompt,

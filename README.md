@@ -24,7 +24,14 @@ python page2vec.py \
 
 **ChromaDB**
 
-COMING SOON
+```
+python page2vec.py \
+  --url "[INSERT A URL]"  \
+  --database chromadb \
+  --chromadb-api-key "[YOUR API KEY]"  \
+  --chromadb-collection "page2vec-testing"
+```
+
 
 ## Dependencies
 
