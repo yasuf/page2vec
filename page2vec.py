@@ -10,11 +10,15 @@ from dotenv import load_dotenv
 import argparse
 import asyncio
 from chromadb import CloudClient
+from pymilvus import Milvus
+
 from pinecone_helper import upload_file_to_pinecone
 from chromadb_helper import upload_file_to_chromadb
+from milvus_helper import upload_file_to_milvus
+
 load_dotenv()
 
-supported_databases = ["pinecone", "chromadb"]
+supported_databases = ["pinecone", "chromadb", "milvus"]
 
 browser = Browser(headless=True)
 
@@ -32,6 +36,10 @@ parser.add_argument("--chromadb-api-key", type=str, help="The API key of the Chr
 parser.add_argument("--chromadb-tenant-id", type=str, help="The tenant ID of the ChromaDB database.", default="")
 parser.add_argument("--chromadb-database-name", type=str, help="The name of the collection to store the vectors in.", default="")
 
+# Milvus specific arguments
+parser.add_argument("--milvus-output-file", type=str, help="The name of the file to store the vectors in.", default="")
+parser.add_argument("--milvus-collection-name", type=str, help="The name of the collection to store the vectors in.", default="")
+
 # Test mode, shorter agent cycle
 parser.add_argument("--test-mode", type=bool, help="If true, the agent will only look for the first 2 paragraphs.", default=False)
 
@@ -47,6 +55,9 @@ pinecone_namespace = args.pinecone_namespace
 chroma_db_api_key = args.chromadb_api_key
 chroma_db_tenant_id = args.chromadb_tenant_id
 chroma_db_database_name = args.chromadb_database_name
+
+milvus_collection_name = args.milvus_collection_name
+milvus_output_file = args.milvus_output_file
 
 test_mode = args.test_mode
 
@@ -101,6 +112,11 @@ async def upload_files_to_vector_storage():
           api_key=chroma_db_api_key,
           database_name=chroma_db_database_name,
           tenant_id=chroma_db_tenant_id,
+        )
+      elif database == "milvus":
+        await upload_file_to_milvus(file=f,
+          output_file=milvus_output_file,
+          collection_name=milvus_collection_name,
         )
       else:
         print(f"Database {database} not supported")

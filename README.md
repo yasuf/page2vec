@@ -32,6 +32,16 @@ python page2vec.py \
   --chromadb-collection "page2vec-testing"
 ```
 
+**Milvus**
+```
+python page2vec.py \
+  --url "[INSERT A URL]"  \
+  --database milvus \
+  --milvus-otuput-file "[YOUR API KEY]"  \
+  --milvus-collection "page2vec-testing"
+```
+```
+
 
 ## Dependencies
 

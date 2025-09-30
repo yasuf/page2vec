@@ -8,6 +8,7 @@ name = "pypi"
 browser-use = ">=0.3.0"
 pinecone = ">=2.2.0"
 chromadb = ">=1.1.0"
+pymilvus = ">=2.2.0"
 
 [dev-packages]
 pytest = "*"
