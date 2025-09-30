@@ -9,8 +9,6 @@ from browser_use import Agent, ChatOpenAI, Browser
 from dotenv import load_dotenv
 import argparse
 import asyncio
-from chromadb import CloudClient
-from pymilvus import Milvus
 
 from pinecone_helper import upload_file_to_pinecone
 from chromadb_helper import upload_file_to_chromadb
