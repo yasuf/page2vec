@@ -1,0 +1,30 @@
+# Include the README and other documentation files
+include README.md
+include LICENSE
+include CHANGELOG.md
+
+# Include the requirements and configuration files
+include requirements.txt
+include Pipfile
+include Pipfile.lock
+include pyproject.toml
+
+# Include any data files
+recursive-include page2vec *.py
+recursive-include page2vec *.txt
+recursive-include page2vec *.md
+
+# Exclude unnecessary files
+exclude *.pyc
+exclude .DS_Store
+exclude .gitignore
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+recursive-exclude * .DS_Store
+
+# Exclude test files and outputs
+exclude test_*.py
+exclude test_*.db
+exclude test_command.txt
+recursive-exclude outputs *
+recursive-exclude README_files *

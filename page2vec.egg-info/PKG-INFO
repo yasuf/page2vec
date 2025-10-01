@@ -1,3 +1,46 @@
+Metadata-Version: 2.4
+Name: page2vec
+Version: 0.1.0
+Summary: Convert knowledge base websites into vectors for vector databases
+Home-page: https://github.com/yourusername/page2vec
+Author: Yasu
+Author-email:
+License: MIT
+Project-URL: Homepage, https://github.com/yourusername/page2vec
+Project-URL: Repository, https://github.com/yourusername/page2vec.git
+Project-URL: Issues, https://github.com/yourusername/page2vec/issues
+Keywords: vector database,embeddings,web scraping,knowledge base,pinecone,chromadb,milvus
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Internet :: WWW/HTTP :: Indexing/Search
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: browser-use>=0.3.0
+Requires-Dist: pinecone>=2.2.0
+Requires-Dist: chromadb>=1.1.0
+Requires-Dist: pymilvus>=2.2.0
+Requires-Dist: milvus-model
+Requires-Dist: python-dotenv
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-asyncio; extra == "dev"
+Requires-Dist: black; extra == "dev"
+Requires-Dist: flake8; extra == "dev"
+Requires-Dist: mypy; extra == "dev"
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+
 ## Description
 
 Convert your knowledge base website into a text file that you can store as a vector in any of the existing vector databases.

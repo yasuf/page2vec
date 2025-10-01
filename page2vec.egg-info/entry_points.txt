@@ -1,0 +1,2 @@
+[console_scripts]
+page2vec = page2vec.core:main
