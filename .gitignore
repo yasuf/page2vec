@@ -6,3 +6,5 @@ __pycache__/*
 README.html
 README_files/
 test_milvus.db
+
+*.egg-info/
