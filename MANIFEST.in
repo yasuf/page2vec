@@ -1,7 +1,6 @@
 # Include the README and other documentation files
 include README.md
 include LICENSE
-include CHANGELOG.md
 
 # Include the requirements and configuration files
 include requirements.txt
