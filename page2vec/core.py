@@ -29,7 +29,13 @@ SUPPORTED_DATABASES = ["pinecone", "chromadb", "milvus"]
 def create_parser():
     """Create and configure the argument parser."""
     parser = argparse.ArgumentParser(
-        description="A script to convert a knowledge base into vectors and store them in a database."
+        description="""
+A script to convert a knowledge base into vectors and store them in a database.
+
+Default prompt:
+Find all the paragraphs of the documentation in {url}.
+Store each paragraph in a separate row in a CSV.
+"""
     )
 
     # Main arguments
@@ -51,6 +57,18 @@ def create_parser():
         type=str,
         help="The API key to connect to OpenAI.",
         default=""
+    )
+
+    parser.add_argument(
+        "--custom-prompt",
+        type=str,
+        help="""
+The custom prompt to use to scrape a website.
+Make sure to include the URL in this custom prompt and if this argument is passed, the URL parameter will be ignored.
+If not provided, the default prompt will be used.
+Make sure to instruct the agent to store the content in a CSV file with each paragraph in a separate row, the CSV file will be uploaded to the vector database row by row.
+""",
+        default=None
     )
 
     # Pinecone specific arguments
@@ -118,7 +136,7 @@ def create_parser():
     return parser
 
 
-async def scrape_website(url: str, test_mode: bool = False) -> list:
+async def scrape_website(url: str, test_mode: bool = False, custom_prompt: str = "") -> list:
     """
     Scrape a website and extract paragraphs using browser automation.
 
@@ -136,6 +154,8 @@ async def scrape_website(url: str, test_mode: bool = False) -> list:
         Find the first 2 paragraphs of the documentation in {url}.
         Store each paragraph in a separate row in a CSV.
         """
+    elif custom_prompt:
+        prompt = custom_prompt
     else:
         prompt = f"""
         Find all the paragraphs of the documentation in {url}.
@@ -206,7 +226,7 @@ async def async_main(args):
         sys.exit(1)
 
     # Scrape the website
-    files = await scrape_website(args.url, args.test_mode)
+    files = await scrape_website(args.url, args.test_mode, args.custom_prompt)
 
     if not files:
         print("No files were generated from the scraping process")
