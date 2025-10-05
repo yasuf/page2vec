@@ -1,5 +1,6 @@
 .env
 test_command.txt
+old_test_commands.txt
 
 __pycache__/*
 

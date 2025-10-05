@@ -46,12 +46,6 @@ def create_parser():
         help="The URL to scrape.",
         default="https://docs.github.com/en/rest/about-the-rest-api/about-the-openapi-description-for-the-rest-api?apiVersion=2022-11-28"
     )
-    parser.add_argument(
-        "--openai-api-key",
-        type=str,
-        help="The API key to connect to OpenAI.",
-        default=""
-    )
 
     # Pinecone specific arguments
     parser.add_argument(
@@ -118,7 +112,7 @@ def create_parser():
     return parser
 
 
-async def scrape_website(url: str, test_mode: bool = False) -> list:
+async def scrape_website(url: str, test_mode: bool = False, openai_api_key: str = "") -> list:
     """
     Scrape a website and extract paragraphs using browser automation.
 
@@ -144,7 +138,7 @@ async def scrape_website(url: str, test_mode: bool = False) -> list:
 
     agent = Agent(
         task=prompt,
-        llm=ChatOpenAI(model="o4-mini"),
+        llm=ChatOpenAI(model="o4-mini", api_key=openai_api_key),
         browser=browser,
     )
 
@@ -206,7 +200,7 @@ async def async_main(args):
         sys.exit(1)
 
     # Scrape the website
-    files = await scrape_website(args.url, args.test_mode)
+    files = await scrape_website(args.url, args.test_mode, args.openai_api_key)
 
     if not files:
         print("No files were generated from the scraping process")
