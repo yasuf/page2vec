@@ -5,12 +5,12 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "page2vec"
 version = "0.1.0"
-description = "Convert knowledge base websites into vectors for vector databases"
+description = "Convert knowledge base websites into vectors to load them intovector databases"
 readme = "README.md"
 requires-python = ">=3.8"
 license = {text = "MIT"}
 authors = [
-    {name = "Yasu"},
+    {name = "Yasu Flores"},
 ]
 keywords = [
     "vector database",
@@ -58,9 +58,9 @@ dev = [
 page2vec = "page2vec.core:main"
 
 [project.urls]
-Homepage = "https://github.com/yourusername/page2vec"
-Repository = "https://github.com/yourusername/page2vec.git"
-Issues = "https://github.com/yourusername/page2vec/issues"
+Homepage = "https://github.com/yasuf/page2vec"
+Repository = "https://github.com/yasuf/page2vec.git"
+Issues = "https://github.com/yasuf/page2vec/issues"
 
 [tool.setuptools.packages.find]
 where = ["."]
